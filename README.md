@@ -1,6 +1,18 @@
 Steps for installation.
 
-a) Configuration of server. In my case Nginx. 
+a) Project configuration 
+
+    1. git clone https://github.com/DarkoKlisuric/ShopApi
+    
+    2. cd shopApi && mv .env.example .env && composer update
+
+    3. Open .env and configure db_user and db_password
+    
+    4. php bin/console doctrine:database:create
+    
+    5. php bin/console doctrine:migrations:migrate
+   
+b) Configuration of server. In my case Nginx. 
  
     1. sudo nano /etc/nginx/sites-available/shopApi
     
@@ -43,10 +55,4 @@ a) Configuration of server. In my case Nginx.
    
     6. sudo systemctl restart nginx.service
 
-b) Cloning project 
-
-    1. git clone https://github.com/DarkoKlisuric/ShopApi
-    
-    2. cd ShopApi && composer update
-
-    3. Go to http://local.shopapi.hr/
+c) Go to http://local.shopapi.hr/
