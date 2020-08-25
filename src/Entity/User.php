@@ -170,14 +170,14 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getUsername()
+    {
+        return $this->getEmail();
+    }
+
     public function getSalt()
     {
         // TODO: Implement getSalt() method.
-    }
-
-    public function getUsername()
-    {
-        // TODO: Implement getUsername() method.
     }
 
     public function eraseCredentials()
