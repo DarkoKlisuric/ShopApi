@@ -1,6 +1,7 @@
 Steps for installation.
 
 a) Configuration of server. In my case Nginx. 
+ 
     1. sudo nano /etc/nginx/sites-available/shopApi
     
     2. In shopApi paste this: 
@@ -43,6 +44,7 @@ a) Configuration of server. In my case Nginx.
     6. sudo systemctl restart nginx.service
 
 b) Creating project 
+
     1. Install Symfony CLI 
       - https://symfony.com/download
       
