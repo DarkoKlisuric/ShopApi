@@ -43,11 +43,10 @@ a) Configuration of server. In my case Nginx.
    
     6. sudo systemctl restart nginx.service
 
-b) Creating project 
+b) Cloning project 
 
-    1. Install Symfony CLI 
-      - https://symfony.com/download
-      
-    2. symfony new ShopApi 
+    1. git clone https://github.com/DarkoKlisuric/ShopApi
     
+    2. cd ShopApi && composer update
+
     3. Go to http://local.shopapi.hr/
