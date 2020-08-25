@@ -55,4 +55,18 @@ b) Configuration of server. In my case Nginx.
    
     6. sudo systemctl restart nginx.service
 
-c) Go to http://local.shopapi.hr/
+c) JWT 
+     
+      - In root of project 
+      1. mkdir config/jwt
+      
+      - Important! Your pass_phrase are in .env -> JWT_PASSPHRASE= 
+      2. openssl genrsa -out config/jwt/private.pem -aes256 4096
+        
+      3. openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
+
+d) For list of endpoint-s, execute the command 
+    
+    - php bin/console debug:router
+
+e) Go to http://local.shopapi.hr/

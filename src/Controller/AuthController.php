@@ -18,7 +18,7 @@ class AuthController extends AbstractController
      * @param JWTTokenManagerInterface $JWTManager
      * @return JsonResponse
      */
-    public function getTokenUser(UserInterface $user, JWTTokenManagerInterface $JWTManager)
+    public function login(UserInterface $user, JWTTokenManagerInterface $JWTManager)
     {
         return new JsonResponse(['token' => $JWTManager->create($user)]);
     }
