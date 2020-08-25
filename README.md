@@ -4,9 +4,9 @@ a) Project configuration
 
     1. git clone https://github.com/DarkoKlisuric/ShopApi
     
-    2. cd shopApi && mv .env.example .env && composer update
+    2. cd ShopApi && composer update
 
-    3. Open .env and configure db_user and db_password
+    3. Open .env and configure db_user, db_password and db_name
     
     4. php bin/console doctrine:database:create
     
@@ -16,12 +16,12 @@ b) Configuration of server. In my case Nginx.
  
     1. sudo nano /etc/nginx/sites-available/shopApi
     
-    2. In shopApi paste this: 
-    
+    2. In ShopApi paste this: 
+    - change $USER with your local username
     server { 
         listen 80;
         listen [::]:80;
-        root /home/klisuric/shopApi/public;
+        root /home/$USER/ShopApi/public;
         index index.php index.html index.htm index.nginx-debian.html;
         server_name local.shopapi.hr www.local.shopapi.hr;
         location / { try_files $uri /index.php$is_args$args;
