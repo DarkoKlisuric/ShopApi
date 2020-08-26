@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Entity\User;
 use App\Enums\RoleEnum;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -15,15 +16,32 @@ class UserService extends Service
     private UserPasswordEncoderInterface $passwordEncoder;
 
     /**
+     * @var UserRepository
+     */
+    private UserRepository $userRepository;
+
+    /**
      * UserService constructor.
      * @param EntityManagerInterface $entityManager
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param UserRepository $userRepository
      */
-    public function __construct(EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(EntityManagerInterface $entityManager,
+                                UserPasswordEncoderInterface $passwordEncoder,
+                                UserRepository $userRepository)
     {
         parent::__construct($entityManager);
 
         $this->passwordEncoder = $passwordEncoder;
+        $this->userRepository = $userRepository;
+    }
+
+    /**
+     * @return array
+     */
+    public function findAll()
+    {
+        return $this->userRepository->getAll();
     }
 
     /**
@@ -66,13 +84,5 @@ class UserService extends Service
             ->setRoles([RoleEnum::ROLE_USER]);
 
         $user->eraseCredentials();
-    }
-
-    /**
-     * @return array
-     */
-    public function findAll()
-    {
-        return $this->getEntityManager()->getRepository(User::class)->findBy(['roles' => [RoleEnum::ROLE_USER]]);
     }
 }
