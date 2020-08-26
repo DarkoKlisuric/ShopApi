@@ -3,10 +3,10 @@
 namespace App\Serializer;
 
 /**
- * Interface RequestUtilInterface
- * @package App\Utils
+ * Interface RequestSerializerInterface
+ * @package App\Serializer
  */
-interface RequestUtilInterface
+interface RequestSerializerInterface
 {
     public function deserialize(string $data, string $model, array $groups = []): object;
 }

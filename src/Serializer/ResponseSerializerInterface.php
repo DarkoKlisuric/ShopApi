@@ -3,10 +3,10 @@
 namespace App\Serializer;
 
 /**
- * Interface ResponseUtilInterface
- * @package App\Utils
+ * Interface ResponseSerializerInterface
+ * @package App\Serializer
  */
-interface ResponseUtilInterface
+interface ResponseSerializerInterface
 {
     /**
      * @param object $model

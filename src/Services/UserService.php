@@ -42,6 +42,9 @@ class UserService extends Service
             ->setRoles([RoleEnum::ROLE_USER]);
 
         $em->persist($user);
+
+        $user->eraseCredentials();
+
         $em->flush();;
     }
 

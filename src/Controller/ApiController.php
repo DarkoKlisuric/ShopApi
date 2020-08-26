@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Serializer\RequestUtilInterface;
-use App\Serializer\ResponseUtilInterface;
+use App\Serializer\RequestSerializerInterface;
+use App\Serializer\ResponseSerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,35 +15,35 @@ use Symfony\Component\HttpFoundation\Response;
 class ApiController extends AbstractController
 {
     /**
-     * @var RequestUtilInterface
+     * @var RequestSerializerInterface
      */
-    private RequestUtilInterface $requestUtil;
+    private RequestSerializerInterface $requestSerializer;
 
     /**
-     * @var ResponseUtilInterface
+     * @var ResponseSerializerInterface
      */
-    private ResponseUtilInterface $responseUtil;
+    private ResponseSerializerInterface $responseSerializer;
 
-    public function __construct(RequestUtilInterface $requestUtil, ResponseUtilInterface $responseUtil)
+    public function __construct(RequestSerializerInterface $requestSerializer, ResponseSerializerInterface $responseSerializer)
     {
-        $this->requestUtil = $requestUtil;
-        $this->responseUtil = $responseUtil;
+        $this->requestSerializer = $requestSerializer;
+        $this->responseSerializer = $responseSerializer;
     }
 
     /**
-     * @return RequestUtilInterface
+     * @return RequestSerializerInterface
      */
-    public function getRequestUtil(): RequestUtilInterface
+    public function getRequestSerializer(): RequestSerializerInterface
     {
-        return $this->requestUtil;
+        return $this->requestSerializer;
     }
 
     /**
-     * @return ResponseUtilInterface
+     * @return ResponseSerializerInterface
      */
-    public function getResponseUtil(): ResponseUtilInterface
+    public function getResponseSerializer(): ResponseSerializerInterface
     {
-        return $this->responseUtil;
+        return $this->responseSerializer;
     }
 
     /**
@@ -73,11 +73,11 @@ class ApiController extends AbstractController
     /**
      * @param $data
      * @param array $headers
-     * @return JsonResponse
+     * @return Response
      */
     public function response($data, $headers = [])
     {
-        return new JsonResponse($data, $this->getStatusCode(), $headers);
+        return new Response($data, $this->getStatusCode(), $headers);
     }
 
     /**
@@ -110,6 +110,14 @@ class ApiController extends AbstractController
         return new JsonResponse($data, $this->getStatusCode(), $headers);
     }
 
+    /**
+     * @param array $data
+     * @return JsonResponse
+     */
+    public function respondCreated($data = [])
+    {
+        return $this->setStatusCode(Response::HTTP_CREATED)->respondWithSuccess($data);
+    }
 
     /**
      * @param string $message
@@ -136,14 +144,5 @@ class ApiController extends AbstractController
     public function respondNotFound($message = 'Not found!')
     {
         return $this->setStatusCode(Response::HTTP_NOT_FOUND)->respondWithErrors($message);
-    }
-
-    /**
-     * @param array $data
-     * @return JsonResponse
-     */
-    public function respondCreated($data = [])
-    {
-        return $this->setStatusCode(Response::HTTP_CREATED)->response($data);
     }
 }

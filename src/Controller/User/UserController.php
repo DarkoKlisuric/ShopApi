@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Services\UserService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class UserController
@@ -17,12 +18,12 @@ class UserController extends ApiController
 {
     /**
      * @param User|null $user
-     * @return JsonResponse
+     * @return Response
      */
     public function show(?User $user)
     {
         if (null !== $user) {
-            $response = $this->getResponseUtil()->serialize($user, 'show');
+            $response = $this->getResponseSerializer()->serialize($user, 'show');
 
             return $this->response($response, ['Content-Type' => 'application/json']);
         }

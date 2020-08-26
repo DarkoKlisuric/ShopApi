@@ -5,10 +5,10 @@ namespace App\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * Class ResponseUtil
- * @package App\Utils
+ * Class ResponseSerializer
+ * @package App\Searializer
  */
-class ResponseUtil implements ResponseUtilInterface
+class ResponseSerializer implements ResponseSerializerInterface
 {
     /**
      * @var SerializerInterface
@@ -16,7 +16,7 @@ class ResponseUtil implements ResponseUtilInterface
     private SerializerInterface $serializer;
 
     /**
-     * ResponseUtil constructor.
+     * ResponseSerializer constructor.
      * @param SerializerInterface $serializer
      */
     public function __construct(SerializerInterface $serializer)

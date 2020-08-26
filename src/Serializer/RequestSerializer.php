@@ -8,10 +8,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * Class RequestUtil
- * @package App\Utils
+ * Class RequestSerializer
+ * @package App\Searializer
  */
-class RequestUtil implements RequestUtilInterface
+class RequestSerializer implements RequestSerializerInterface
 {
     /** @var SerializerInterface  */
     private SerializerInterface $serializer;
@@ -20,7 +20,7 @@ class RequestUtil implements RequestUtilInterface
     private ValidatorInterface $validator;
 
     /**
-     * RequestUtil constructor.
+     * RequestSerializer constructor.
      * @param SerializerInterface $serializer
      * @param ValidatorInterface $validator
      */
