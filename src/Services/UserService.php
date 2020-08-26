@@ -48,8 +48,11 @@ class UserService extends Service
         $em->flush();;
     }
 
+    /**
+     * @return array
+     */
     public function findAll()
     {
-        return $this->getEntityManager()->getRepository(User::class)->findBy(['roles' => RoleEnum::ROLE_USER]);
+        return $this->getEntityManager()->getRepository(User::class)->findBy(['roles' => [RoleEnum::ROLE_USER]]);
     }
 }

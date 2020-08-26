@@ -27,7 +27,7 @@ class RegistrationController extends ApiController
         // Deserialization of object
         try {
             /** @var User $object */
-            $object = $this->getRequestSerializer()->deserialize($request->getContent(), User::class, ['create']);
+            $object = $this->getRequestSerializer()->deserialize($request->getContent(), User::class, ['post']);
         } catch (HttpException $exception) {
             return $this->respondValidationError($exception->getMessage());
         }

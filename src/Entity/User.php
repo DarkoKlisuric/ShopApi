@@ -22,20 +22,21 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("get")
      */
     private int $id;
 
     /**
      * @ORM\Column(name="last_name", type="string", length=180, name="first_name", nullable=true)
      * @Assert\NotNull
-     * @Groups({"create", "show"})
+     * @Groups({"get", "post"})
      */
     private string $firstName;
 
     /**
      * @ORM\Column(name="last_name", type="string", length=180,  nullable=true)
      * @Assert\NotNull
-     * @Groups({"create", "show"})
+     * @Groups({"get", "post"})
      */
     private string $lastName;
 
@@ -52,14 +53,14 @@ class User implements UserInterface
 
     /**
      * @Assert\NotNull
-     * @Groups({"create"})
+     * @Groups({"post"})
      */
     private string $plainPassword;
 
     /**
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      * @Assert\NotNull
-     * @Groups({"create", "show"})
+     * @Groups({"get", "post"})
      */
     private string $email;
 

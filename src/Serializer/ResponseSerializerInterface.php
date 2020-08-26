@@ -9,9 +9,9 @@ namespace App\Serializer;
 interface ResponseSerializerInterface
 {
     /**
-     * @param object $model
+     * @param array|object $model
      * @param string $groups
      * @return string
      */
-    public function serialize(object $model, string $groups): string;
+    public function serialize($model, string $groups): string;
 }

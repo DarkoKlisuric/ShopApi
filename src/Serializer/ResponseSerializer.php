@@ -25,11 +25,11 @@ class ResponseSerializer implements ResponseSerializerInterface
     }
 
     /**
-     * @param object $model
+     * @param array|object $model
      * @param string $groups
      * @return string
      */
-    public function serialize(object $model, string $groups = ''): string
+    public function serialize($model, string $groups = ''): string
     {
         return $this->serializer->serialize($model, 'json', ['groups' => $groups]);
     }
