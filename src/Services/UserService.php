@@ -44,4 +44,9 @@ class UserService extends Service
         $em->persist($user);
         $em->flush();;
     }
+
+    public function findAll()
+    {
+        return $this->getEntityManager()->getRepository(User::class)->findBy(['roles' => RoleEnum::ROLE_USER]);
+    }
 }

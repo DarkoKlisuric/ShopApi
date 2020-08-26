@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ApiController extends AbstractController
 {
-
     /**
      * @var RequestUtilInterface
      */
@@ -78,7 +77,7 @@ class ApiController extends AbstractController
      */
     public function response($data, $headers = [])
     {
-        return new Response($data, $this->getStatusCode(), $headers);
+        return new JsonResponse($data, $this->getStatusCode(), $headers);
     }
 
     /**

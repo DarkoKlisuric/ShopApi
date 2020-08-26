@@ -29,7 +29,7 @@ class ResponseUtil implements ResponseUtilInterface
      * @param string $groups
      * @return string
      */
-    public function serialize(object $model, string $groups): string
+    public function serialize(object $model, string $groups = ''): string
     {
         return $this->serializer->serialize($model, 'json', ['groups' => $groups]);
     }

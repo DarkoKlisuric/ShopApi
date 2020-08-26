@@ -4,6 +4,7 @@ namespace App\Controller\User;
 
 use App\Controller\ApiController;
 use App\Entity\User;
+use App\Services\UserService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -29,8 +30,8 @@ class UserController extends ApiController
         return $this->respondNotFound();
     }
 
-    public function list()
+    public function list(UserService $service)
     {
-
+        $users = $service->findAll();
     }
 }

@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Services\UserService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -18,7 +19,7 @@ class RegistrationController extends ApiController
     /**
      * @param Request $request
      * @param UserService $service
-     * @return JsonResponse
+     * @return Response
      */
     public function register(Request $request, UserService $service)
     {
@@ -27,7 +28,7 @@ class RegistrationController extends ApiController
         // Validation of object
         try {
             /** @var User $object */
-            $object = $this->getRequestUtil()->deserialize($request->getContent(), User::class);
+            $object = $this->getRequestUtil()->deserialize($request->getContent(), User::class, ['create']);
         } catch (HttpException $exception) {
             return $this->respondValidationError($exception->getMessage());
         }

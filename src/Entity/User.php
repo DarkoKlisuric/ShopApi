@@ -26,19 +26,20 @@ class User implements UserInterface
     /**
      * @ORM\Column(name="last_name", type="string", length=180, name="first_name", nullable=true)
      * @Assert\NotNull
-     * @Groups({"show"})
+     * @Groups({"create", "show"})
      */
     private string $firstName;
 
     /**
      * @ORM\Column(name="last_name", type="string", length=180,  nullable=true)
      * @Assert\NotNull
-     * @Groups({"show"})
+     * @Groups({"create", "show"})
      */
     private string $lastName;
 
     /**
      * @ORM\Column(type="simple_array")
+     * @Groups({"role"})
      */
     private array $roles = [];
 
@@ -49,14 +50,14 @@ class User implements UserInterface
 
     /**
      * @Assert\NotNull
+     * @Groups({"create"})
      */
     private string $plainPassword;
 
     /**
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      * @Assert\NotNull
-     * @Assert\Email
-     * @Groups({"show"})
+     * @Groups({"create", "show"})
      */
     private string $email;
 

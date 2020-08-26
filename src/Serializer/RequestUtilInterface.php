@@ -8,5 +8,5 @@ namespace App\Serializer;
  */
 interface RequestUtilInterface
 {
-    public function deserialize(string $data, string $model): object;
+    public function deserialize(string $data, string $model, array $groups = []): object;
 }

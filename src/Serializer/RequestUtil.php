@@ -33,9 +33,10 @@ class RequestUtil implements RequestUtilInterface
     /**
      * @param string $data
      * @param string $model
+     * @param array $groups
      * @return null|object
      */
-    public function deserialize(string $data, string $model): object
+    public function deserialize(string $data, string $model, array $groups = []): object
     {
         $object = null;
 
@@ -44,11 +45,10 @@ class RequestUtil implements RequestUtilInterface
         }
 
         try {
-            $object = $this->serializer->deserialize($data, $model, 'json');
+            $object = $this->serializer->deserialize($data, $model, 'json', ['groups' => $groups]);
         } catch (Exception $e) {
             throw new BadRequestHttpException('Invalid body.');
         }
-
         $errors = $this->validator->validate($object);
 
         if ($errors->count()) {
