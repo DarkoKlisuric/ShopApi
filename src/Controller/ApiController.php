@@ -75,7 +75,7 @@ class ApiController extends AbstractController
      * @param array $headers
      * @return Response
      */
-    public function response($data, $headers = [])
+    public function response($data, $headers = ['Content-Type' => 'application/json'])
     {
         return new Response($data, $this->getStatusCode(), $headers);
     }

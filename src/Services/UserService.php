@@ -33,6 +33,30 @@ class UserService extends Service
     {
         $em = $this->getEntityManager();
 
+        $this->setData($user);
+
+        $em->persist($user);
+
+        $em->flush();
+    }
+
+    /**
+     * @param User $user
+     */
+    public function update(User $user)
+    {
+        $em = $this->getEntityManager();
+
+        $this->setData($user);
+
+        $em->flush();
+    }
+
+    /**
+     * @param User $user
+     */
+    private function setData(User $user)
+    {
         $plainPassword = $this->passwordEncoder->encodePassword(
             $user,
             $user->getPlainPassword()
@@ -41,11 +65,7 @@ class UserService extends Service
         $user->setPassword($plainPassword)
             ->setRoles([RoleEnum::ROLE_USER]);
 
-        $em->persist($user);
-
         $user->eraseCredentials();
-
-        $em->flush();;
     }
 
     /**

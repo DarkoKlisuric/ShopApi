@@ -24,9 +24,10 @@ class UserController extends ApiController
         if (null !== $user) {
             $response = $this->getResponseSerializer()->serialize($user, 'get');
 
-            return $this->response($response, ['Content-Type' => 'application/json']);
+            return $this->response($response);
         }
 
+        // If user not exists, return HTTP_NOT_FOUND
         return $this->respondNotFound();
     }
 
@@ -40,6 +41,6 @@ class UserController extends ApiController
 
         $response = $this->getResponseSerializer()->serialize($users, 'get');
 
-        return $this->response($response, ['Content-Type' => 'application/json']);
+        return $this->response($response);
     }
 }
