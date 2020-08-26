@@ -7,22 +7,34 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+/**
+ * Class RequestUtil
+ * @package App\Utils
+ */
 class RequestUtil
 {
+    /** @var SerializerInterface  */
     private SerializerInterface $serializer;
-    private ValidatorInterface $validator;
-    private $violator;
 
-    public function __construct(
-        SerializerInterface $serializer,
-        ValidatorInterface $validator,
-        ViolationUtil $violator
-    ) {
+    /** @var ValidatorInterface  */
+    private ValidatorInterface $validator;
+
+    /**
+     * RequestUtil constructor.
+     * @param SerializerInterface $serializer
+     * @param ValidatorInterface $validator
+     */
+    public function __construct(SerializerInterface $serializer, ValidatorInterface $validator)
+    {
         $this->serializer = $serializer;
         $this->validator = $validator;
-        $this->violator = $violator;
     }
 
+    /**
+     * @param string $data
+     * @param string $model
+     * @return object
+     */
     public function validate(string $data, string $model): object
     {
         if (!$data) {
@@ -38,7 +50,7 @@ class RequestUtil
         $errors = $this->validator->validate($object);
 
         if ($errors->count()) {
-            throw new BadRequestHttpException(json_encode($this->violator->build($errors)));
+            throw new BadRequestHttpException(json_encode($errors));
         }
 
         return $object;
