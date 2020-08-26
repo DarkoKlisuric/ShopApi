@@ -1,4 +1,9 @@
 api_login_check:
   path: /api/login_check
-  controller: App\Controller\AuthController::login
+  controller: App\Controller\User\AuthController::login
+  methods: POST
+
+api_user_registation:
+  path: /api/registration
+  controller: App\Controller\User\RegistrationController::register
   methods: POST

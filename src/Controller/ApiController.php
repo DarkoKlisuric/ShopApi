@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Class ApiController
@@ -115,22 +116,8 @@ class ApiController extends AbstractController
         return $this->setStatusCode(Response::HTTP_CREATED)->response($data);
     }
 
-
-    /**
-     * Decoding data
-     * @param Request $request
-     * @return Request
-     */
-    protected function transformJsonBody(Request $request)
+    protected function serialize(Request $request, SerializerInterface $serializer)
     {
-        $data = json_decode($request->getContent(), true);
 
-        if (null === $data) {
-            return $request;
-        }
-
-        $request->request->replace($data);
-
-        return $request;
     }
 }
