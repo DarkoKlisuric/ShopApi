@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -11,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Class AuthController
  * @package App\Controller
  */
-class AuthController extends AbstractController
+class AuthController
 {
     /**
      * @param UserInterface $user
