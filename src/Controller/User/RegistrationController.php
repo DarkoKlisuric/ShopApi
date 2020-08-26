@@ -10,5 +10,8 @@ use App\Controller\ApiController;
  */
 class RegistrationController extends ApiController
 {
+    public function register()
+    {
 
+    }
 }
