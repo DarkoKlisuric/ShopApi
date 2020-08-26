@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Serializer\RequestSerializerInterface;
 use App\Serializer\ResponseSerializerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -12,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class ApiController
  * @package App\Controller
  */
-class ApiController extends AbstractController
+class ApiController
 {
     /**
      * @var RequestSerializerInterface
