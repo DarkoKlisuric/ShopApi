@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
@@ -23,11 +25,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(name="last_name", type="string", length=180, name="first_name", nullable=true)
+     * @Assert\NotNull
+     * @Groups("show")
      */
     private $firstName;
 
     /**
      * @ORM\Column(name="last_name", type="string", length=180,  nullable=true)
+     * @Assert\NotNull
+     * @Groups("show")
      */
     private $lastName;
 
@@ -41,10 +47,15 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @Assert\NotNull
+     */
     private $plainPassword;
 
     /**
      * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @Assert\NotNull
+     * @Groups("show")
      */
     private $email;
 

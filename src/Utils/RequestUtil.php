@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * Class RequestUtil
  * @package App\Utils
  */
-class RequestUtil
+class RequestUtil implements RequestUtilInterface
 {
     /** @var SerializerInterface  */
     private SerializerInterface $serializer;
@@ -33,10 +33,12 @@ class RequestUtil
     /**
      * @param string $data
      * @param string $model
-     * @return object
+     * @return null|object
      */
     public function validate(string $data, string $model): object
     {
+        $object = null;
+
         if (!$data) {
             throw new BadRequestHttpException('Empty body.');
         }
