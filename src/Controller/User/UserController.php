@@ -37,8 +37,10 @@ class UserController extends ApiController
      */
     public function list(UserService $service)
     {
+        // All users with role "ROLE_USER"
         $users = $service->findAll();
 
+        // Searialize array of user objects
         $response = $this->getResponseSerializer()->serialize($users, 'get');
 
         return $this->response($response);

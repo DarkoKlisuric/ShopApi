@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\SerializerInterface;
  * Class ResponseSerializer
  * @package App\Searializer
  */
-class ResponseSerializer implements ResponseSerializerInterface
+final class ResponseSerializer implements ResponseSerializerInterface
 {
     /**
      * @var SerializerInterface

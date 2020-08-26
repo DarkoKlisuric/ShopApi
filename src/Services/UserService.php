@@ -8,6 +8,10 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * Class UserService
+ * @package App\Services
+ */
 class UserService extends Service
 {
     /**

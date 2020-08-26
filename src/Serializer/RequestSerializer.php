@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * Class RequestSerializer
  * @package App\Searializer
  */
-class RequestSerializer implements RequestSerializerInterface
+final class RequestSerializer implements RequestSerializerInterface
 {
     /** @var SerializerInterface  */
     private SerializerInterface $serializer;
