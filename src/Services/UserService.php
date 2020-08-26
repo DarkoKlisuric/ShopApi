@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entity\User;
+use App\Enums\RoleEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -30,14 +31,17 @@ class UserService extends Service
      */
     public function create(User $user)
     {
+        $em = $this->getEntityManager();
+
         $plainPassword = $this->passwordEncoder->encodePassword(
             $user,
             $user->getPlainPassword()
         );
 
-        $user->setPassword($plainPassword);
+        $user->setPassword($plainPassword)
+            ->setRoles([RoleEnum::ROLE_USER]);
 
-        $this->getEntityManager();
-        $this->getEntityManager()->flush();
+        $em->persist($user);
+        $em->flush();;
     }
 }
