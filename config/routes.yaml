@@ -7,3 +7,13 @@ api_user_registation:
   path: /api/registration
   controller: App\Controller\User\RegistrationController::register
   methods: POST
+
+api_user_show:
+  path: /api/user/{id}
+  controller: App\Controller\User\UserController::show
+  methods: GET
+
+api_users_show:
+  path: /api/users
+  controller: App\Controller\User\UserController::list
+  methods: GET

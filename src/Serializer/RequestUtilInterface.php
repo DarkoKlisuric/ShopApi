@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils;
+namespace App\Serializer;
 
 /**
  * Interface RequestUtilInterface
@@ -8,5 +8,5 @@ namespace App\Utils;
  */
 interface RequestUtilInterface
 {
-    public function validate(string $data, string $model): object;
+    public function deserialize(string $data, string $model): object;
 }

@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Utils\RequestUtilInterface;
+use App\Serializer\RequestUtilInterface;
+use App\Serializer\ResponseUtilInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,9 +20,15 @@ class ApiController extends AbstractController
      */
     private RequestUtilInterface $requestUtil;
 
-    public function __construct(RequestUtilInterface $requestUtil)
+    /**
+     * @var ResponseUtilInterface
+     */
+    private ResponseUtilInterface $responseUtil;
+
+    public function __construct(RequestUtilInterface $requestUtil, ResponseUtilInterface $responseUtil)
     {
         $this->requestUtil = $requestUtil;
+        $this->responseUtil = $responseUtil;
     }
 
     /**
@@ -30,6 +37,14 @@ class ApiController extends AbstractController
     public function getRequestUtil(): RequestUtilInterface
     {
         return $this->requestUtil;
+    }
+
+    /**
+     * @return ResponseUtilInterface
+     */
+    public function getResponseUtil(): ResponseUtilInterface
+    {
+        return $this->responseUtil;
     }
 
     /**
@@ -63,7 +78,7 @@ class ApiController extends AbstractController
      */
     public function response($data, $headers = [])
     {
-        return new JsonResponse($data, $this->getStatusCode(), $headers);
+        return new Response($data, $this->getStatusCode(), $headers);
     }
 
     /**

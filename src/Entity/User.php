@@ -21,44 +21,44 @@ class User implements UserInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(name="last_name", type="string", length=180, name="first_name", nullable=true)
      * @Assert\NotNull
-     * @Groups("show")
+     * @Groups({"show"})
      */
-    private $firstName;
+    private string $firstName;
 
     /**
      * @ORM\Column(name="last_name", type="string", length=180,  nullable=true)
      * @Assert\NotNull
-     * @Groups("show")
+     * @Groups({"show"})
      */
-    private $lastName;
+    private string $lastName;
 
     /**
      * @ORM\Column(type="simple_array")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @ORM\Column(name="password", type="string" , nullable=false)
      */
-    private $password;
+    private string $password;
 
     /**
      * @Assert\NotNull
      */
-    private $plainPassword;
+    private string $plainPassword;
 
     /**
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      * @Assert\NotNull
      * @Assert\Email
-     * @Groups("show")
+     * @Groups({"show"})
      */
-    private $email;
+    private string $email;
 
     /**
      * @return int

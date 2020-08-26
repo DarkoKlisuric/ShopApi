@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils;
+namespace App\Serializer;
 
 use Exception;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -35,7 +35,7 @@ class RequestUtil implements RequestUtilInterface
      * @param string $model
      * @return null|object
      */
-    public function validate(string $data, string $model): object
+    public function deserialize(string $data, string $model): object
     {
         $object = null;
 

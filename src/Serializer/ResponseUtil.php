@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils;
+namespace App\Serializer;
 
 use Symfony\Component\Serializer\SerializerInterface;
 
