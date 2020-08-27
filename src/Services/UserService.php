@@ -53,13 +53,9 @@ class UserService extends Service
      */
     public function create(User $user)
     {
-        $em = $this->getEntityManager();
-
         $this->setData($user);
 
-        $em->persist($user);
-
-        $em->flush();
+        $this->save($user);
     }
 
     /**
@@ -67,11 +63,9 @@ class UserService extends Service
      */
     public function update(User $user)
     {
-        $em = $this->getEntityManager();
-
         $this->setData($user);
 
-        $em->flush();
+        $this->save($user, true);
     }
 
     /**
@@ -88,5 +82,13 @@ class UserService extends Service
             ->setRoles([RoleEnum::ROLE_USER]);
 
         $user->eraseCredentials();
+    }
+
+    /**
+     * @param User $user
+     */
+    public function delete(User $user)
+    {
+        $this->remove($user);
     }
 }
