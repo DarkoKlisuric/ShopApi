@@ -28,6 +28,11 @@ abstract class DataManipulationService extends Service
         $this->entityNamespace = $entityNamespace;
     }
 
+    public function getEntityNamespace()
+    {
+        return $this->entityNamespace;
+    }
+
     /**
      * In this method you must define collections of entity which you want to delete.
      * For instance, user have products collection, favorite product collection etc.
