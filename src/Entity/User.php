@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Utils\EntityRelationNameInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -15,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="user")
  * @UniqueEntity("email")
  */
-class User implements UserInterface
+class User implements UserInterface, EntityRelationNameInterface
 {
     /**
      * @var int
@@ -194,6 +195,14 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         $this->plainPassword = '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getRelationName(): string
+    {
+        return 'user';
     }
 
     public function getSalt()

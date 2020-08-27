@@ -2,14 +2,13 @@
 
 namespace App\Services;
 
-use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class Service
  * @package App\Services
  */
-abstract class Service
+class Service
 {
     /**
      * @var EntityManagerInterface
@@ -26,29 +25,10 @@ abstract class Service
     }
 
     /**
-     * @param object $entity
-     * @param bool $update
-     * @return void
+     * @return EntityManagerInterface
      */
-    protected function save(object $entity, $update = false)
+    protected function getEntityManager(): EntityManagerInterface
     {
-        if (!$update) {
-            $this->entityManager->persist($entity);
-        }
-        $this->entityManager->flush();
-    }
-
-    /**
-     * @param object $entity
-     */
-    protected function remove(object $entity)
-    {
-        $this->entityManager->remove($entity);
-
-        try {
-            $this->entityManager->flush();
-        } catch (ForeignKeyConstraintViolationException $exception) {
-            $exception->getErrorCode();
-        }
+        return $this->entityManager;
     }
 }

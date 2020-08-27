@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * Class UserService
  * @package App\Services
  */
-class UserService extends Service
+class UserService extends DataManipulationService
 {
     /**
      * @var UserPasswordEncoderInterface
@@ -38,6 +38,11 @@ class UserService extends Service
 
         $this->passwordEncoder = $passwordEncoder;
         $this->userRepository = $userRepository;
+    }
+
+    protected function collections(): array
+    {
+        return [];
     }
 
     /**
