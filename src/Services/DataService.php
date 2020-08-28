@@ -3,21 +3,15 @@
 namespace App\Services;
 
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PropertyAccess\Exception\InvalidArgumentException;
 
 /**
- * Class DataManipulationService
+ * Class DataService
  * @package App\Services
  */
-abstract class DataManipulationService extends Service
+abstract class DataService extends Service
 {
     private string $entityNamespace = 'App\\Entity';
-
-    /**
-     * @var EntityManagerInterface
-     */
-    private EntityManagerInterface $entityManager;
 
     /**
      * Optional method if entities are not in App\Entity
@@ -51,9 +45,9 @@ abstract class DataManipulationService extends Service
     protected function save(object $entity, $update = false)
     {
         if (!$update) {
-            $this->entityManager->persist($entity);
+            $this->getEntityManager()->persist($entity);
         }
-        $this->entityManager->flush();
+        $this->getEntityManager()->flush();
     }
 
     /**
@@ -71,7 +65,7 @@ abstract class DataManipulationService extends Service
         $this->removeEntity($entity);
 
         try {
-            $this->entityManager->flush();
+            $this->save($entity, true);
         } catch (ForeignKeyConstraintViolationException $exception) {
             $exception->getErrorCode();
         }
@@ -83,7 +77,7 @@ abstract class DataManipulationService extends Service
      */
     private function removeEntity(object $entity)
     {
-        $this->entityManager->remove($entity);
+        $this->getEntityManager()->remove($entity);
     }
 
     /**
@@ -97,7 +91,7 @@ abstract class DataManipulationService extends Service
             if (class_exists($collection) && strpos($collection, $this->getEntityNamespace()) === 0) {
 
                 // Find all related entities
-                $entities = $this->entityManager->getRepository($collection)->findBy([$entity->getRelationName() => $entity]);
+                $entities = $this->getEntityManager()->getRepository($collection)->findBy([$entity->getRelationName() => $entity]);
 
                 // Remove entities from DB
                 $this->removeEntitiesCollection($entities);

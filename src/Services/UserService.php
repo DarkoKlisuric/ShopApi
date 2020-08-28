@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * Class UserService
  * @package App\Services
  */
-class UserService extends DataManipulationService
+class UserService extends DataService
 {
     /**
      * @var UserPasswordEncoderInterface
